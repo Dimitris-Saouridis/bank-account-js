@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bank account</title>
+</head>
+<body>
+    <h1>Bank Account</h1>
+    <button onclick="main()">Πάτα Εδώ</button>
+    <script>
+        class BankAccount{
+            constructor(name,balance){
+                this.name=name;
+                this.balance=balance;
+            }
+                deposit(amount){
+                    if (amount>0){
+                        this.balance+=amount;
+                        alert(`O ${this.name} έκανε Κατάθεση ${amount}€. Το Tραπεζικό υπόλοιπο είναι ${this.balance}€`);
+                    }
+                    else
+                        alert(`Error, η Κατάθεση που κάνατε είναι αρνητική`);
+                }
+                withdraw(amount){
+                    if(amount>0 && amount<=this.balance){
+                        this.balance-=amount;
+                        alert(`Ο ${this.name} έκανε Ανάληψη ${amount}€. Το Tραπεζικό υπόλοιπο είναι ${this.balance}€`);    
+                    }
+                    else
+                        alert(`Error. Δεν έγινε η  Ανάληψη επειδή το νούμερο είναι αρνητικό ή μεγαλύτερο από το Τραπέζικό υπόλοιπο`);
+            }
+                checkBalance(){
+                    alert(`Ο ${this.name} έχει Τραπεζικό υπόλοιπο ${this.balance}€`);
+                }
+            }
+        function main(){
+            const name=prompt("Δώστε μου το όνομα σας");
+            const account= new BankAccount(name,3000);
+            let option;
+                do{
+                    option=(prompt("Διάλεξε μία από τις παρακάτω επιλογές\n1.Κατάθεση\n2.Ανάληψη\n3.'Ελεγχος υπολοίπου\n4.'Εξοδος"));
+                    switch(option){
+                        case "1":
+                            {
+                                let Kat=parseFloat(prompt("Δώσε μου το πόσο της Κατάθεσης"));
+                                account.deposit(Kat);
+                                break;
+                            }
+                        case "2":
+                            {
+                                let Anal=parseFloat(prompt("Δώσε μου το ποσό Ανάληψης"));
+                                account.withdraw(Anal);
+                                break;
+                            }
+                        case "3":
+                            {
+                                account.checkBalance();
+                                break
+                            }
+                        case "4":{
+                            alert("'Εξοδος");
+                            break;
+                            }
+                    }
+            }while(option!="4");
+        }
+
+    </script>
+    
+</body>
+</html>
